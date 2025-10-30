@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../Desktop/Soccer_Explorer/Scripts"
+		},
+		{
+			"path": "../../../Desktop/Soccer_Explorer/static"
+		},
+		{
+			"path": "../../../Desktop/Soccer_Explorer/templates"
+		},
+		{
+			"path": "../../../Desktop/Soccer_Explorer/Include"
+		},
+		{
+			"path": "../../../Desktop/Soccer_Explorer/Lib"
+		}
+	],
+	"settings": {}
+}

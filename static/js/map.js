@@ -1,10 +1,10 @@
 // Definir colores por liga
 const ligaColors = {
-    'La Liga': '#C8102E',           // Rojo
+    'La Liga': '#973949ff',           // Rojo
     'Premier League': '#3D195B',     // Morado
     'Serie A': '#008FD0',           // Azul
-    'Bundesliga': '#DC052D',        // Rojo oscuro
-    'Ligue 1': '#091C3E'            // Azul marino
+    'Bundesliga': '#6d1313ff',        // Rojo oscuro
+    'Ligue 1': '#1c1fafff'            // Azul marino
 };
 
 // Inicializar el mapa centrado en Europa

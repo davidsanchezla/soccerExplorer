@@ -1,0 +1,147 @@
+/* Variables de colores */
+:root {
+    --color-primary: #2c8c5e;    /* Verde principal */
+    --color-secondary: #1a4d8c;  /* Azul secundario */
+    --color-accent: #34b37c;     /* Verde acento */
+    --color-background: #f0f5f3; /* Fondo claro verdoso */
+    --color-text: #333333;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--color-background);
+}
+
+/* Estilos del menú hamburguesa */
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    cursor: pointer;
+    background-color: var(--color-primary);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Imagen del pin */
+.pin-image {
+    width: 150px;
+    height: 150px;
+    margin: 30px auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.pin-image:hover {
+    transform: scale(1.1);
+}
+
+/* Estilos para las barras de búsqueda */
+.search-container {
+    margin: 30px 0;
+}
+
+.search-bar {
+    width: 80%;
+    max-width: 400px;
+    padding: 12px 20px;
+    margin: 10px 0;
+    border: 2px solid var(--color-primary);
+    border-radius: 25px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.search-bar::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* Contenedor de botones de ligas */
+.leagues-container {
+    margin: 40px 0;
+}
+
+.section-title {
+    color: var(--color-secondary);
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+/* Estilos de los botones */
+.league-button {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--color-primary);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.league-button:hover {
+    background-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección de competiciones internacionales */
+.international-container {
+    margin-top: 40px;
+}
+
+/* Menú lateral */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100%;
+    background-color: var(--color-secondary);
+    padding: 80px 20px 20px;
+    transition: 0.3s;
+    z-index: 999;
+}
+
+.side-menu.active {
+    left: 0;
+}
+
+.menu-item {
+    padding: 15px;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}

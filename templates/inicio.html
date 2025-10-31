@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soccer Explorer - Inicio</title>
+    <link rel="stylesheet" href="/static/css/inicio.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Menú hamburguesa -->
+    <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Menú lateral -->
+    <div class="side-menu" id="sideMenu">
+        <!-- Aquí van los items del menú -->
+        <div class="menu-item">Inicio</div>
+        <div class="menu-item">Favoritos</div>
+        <div class="menu-item">Estadísticas</div>
+        <div class="menu-item">Comparar Equipos</div>
+        <div class="menu-item">Histórico</div>
+        <div class="menu-item">Configuración</div>
+        <div class="menu-item">Acerca de</div>
+    </div>
+
+    <div class="container">
+        <!-- Imagen del pin (reemplazar src con tu imagen) -->
+        <div class="pin-container">
+            <img src="ruta_a_tu_imagen_pin.png" alt="Pin del mapa" class="pin-image" id="mapPin">
+        </div>
+
+        <!-- Barras de búsqueda -->
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Buscar equipo..." id="teamSearch">
+            <input type="text" class="search-bar" placeholder="Buscar ciudad..." id="citySearch">
+        </div>
+
+        <!-- Botones de ligas nacionales -->
+        <div class="leagues-container">
+            <h2 class="section-title">Ligas Nacionales</h2>
+            <div class="buttons-grid">
+                <button class="league-button">La Liga</button>
+                <button class="league-button">Premier League</button>
+                <button class="league-button">Serie A</button>
+                <button class="league-button">Bundesliga</button>
+                <button class="league-button">Ligue 1</button>
+            </div>
+        </div>
+
+        <!-- Botones de competiciones internacionales -->
+        <div class="international-container">
+            <h2 class="section-title">Competiciones Internacionales</h2>
+            <div class="buttons-grid">
+                <button class="league-button">Champions League</button>
+                <button class="league-button">Europa League</button>
+                <button class="league-button">Conference League</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/js/inicio.js"></script>
+</body>
+</html>

@@ -19,13 +19,25 @@ templates = Jinja2Templates(directory=templates_dir)
 # Configurar el directorio de templates
 templates = Jinja2Templates(directory="templates")
 
-# Ruta principal que sirve el HTML con el mapa
+# Ruta principal que sirve la página de inicio
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     return templates.TemplateResponse(
         request=request,
+        name="inicio.html",
+        context={"titulo": "Soccer Explorer - Inicio"}
+    )
+
+# Ruta para el mapa interactivo
+@app.get("/mapa", response_class=HTMLResponse)
+async def mapa(request: Request, liga: str = None):
+    return templates.TemplateResponse(
+        request=request,
         name="index.html",
-        context={"titulo": "Mapa Mundial Interactivo"}
+        context={
+            "titulo": "Mapa Mundial Interactivo",
+            "liga_filtro": liga
+        }
     )
 
 # Ruta adicional con parámetros (ejemplo)

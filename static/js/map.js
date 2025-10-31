@@ -25,10 +25,19 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+// Obtener el parámetro de liga de la URL
+const urlParams = new URLSearchParams(window.location.search);
+const ligaFiltro = urlParams.get('liga');
+
 // Obtener marcadores desde la API
 fetch('/api/marcadores')
     .then(response => response.json())
     .then(data => {
+        // Filtrar marcadores si hay un filtro de liga
+        const marcadoresFiltrados = ligaFiltro 
+            ? data.marcadores.filter(item => item.liga === ligaFiltro)
+            : data.marcadores;
+
         // Crear capas para cada liga
         const ligaLayers = {};
         

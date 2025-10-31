@@ -44,3 +44,30 @@ body {
     display: block;
     margin-bottom: 5px;
 }
+
+.team-icon {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    background: white;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.team-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Efecto hover para los marcadores */
+.leaflet-marker-icon {
+    transition: transform 0.2s ease;
+}
+
+.leaflet-marker-icon:hover {
+    transform: scale(1.1);
+    z-index: 1000 !important;
+}
+
+.team-icon img {
+    background: transparent;
+}

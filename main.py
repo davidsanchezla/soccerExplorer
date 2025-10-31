@@ -13,11 +13,19 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 static_dir = os.path.join(current_dir, "static")
 templates_dir = os.path.join(current_dir, "templates")
 
+# Configurar archivos estáticos y templates
 app.mount("/static", StaticFiles(directory=static_dir), name="static")
 templates = Jinja2Templates(directory=templates_dir)
 
-# Configurar el directorio de templates
-templates = Jinja2Templates(directory="templates")
+# Habilitar CORS
+from fastapi.middleware.cors import CORSMiddleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Ruta principal que sirve la página de inicio
 @app.get("/", response_class=HTMLResponse)

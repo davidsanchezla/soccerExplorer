@@ -11,8 +11,8 @@ const ligaColors = {
 var map = L.map('map', {
     // Establecer límites de vista para Europa
     maxBounds: [
-        [35.0, -15.0], // Esquina suroeste
-        [65.0, 35.0]   // Esquina noreste
+        [25.0, -25.0], // Esquina suroeste
+        [72.0, 55.0]   // Esquina noreste
     ],
     minZoom: 4,
     maxZoom: 20,

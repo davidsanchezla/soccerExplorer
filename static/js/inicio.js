@@ -17,11 +17,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const leagueButtons = document.querySelectorAll('.league-button');
     leagueButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const liga = button.textContent.trim();
+            const liga = button.dataset.league || button.querySelector('.league-name').textContent.trim();
             // Los botones de competiciones internacionales no tienen funcionalidad aún
-            if (!['Champions League', 'Europa League', 'Conference League'].includes(liga)) {
+            if (!button.classList.contains('international')) {
                 window.location.href = `/mapa?liga=${encodeURIComponent(liga)}`;
             }
+        });
+
+        // Añadir efecto de sonido al hover (opcional)
+        button.addEventListener('mouseenter', function() {
+            if (button.classList.contains('playing')) return;
+            button.classList.add('playing');
+            setTimeout(() => button.classList.remove('playing'), 300);
         });
     });
 });

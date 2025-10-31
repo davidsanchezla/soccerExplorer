@@ -47,7 +47,17 @@ body {
 
 .team-icon {
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-    background: white;
+    background: white !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    border: 2px solid white !important;
+    box-sizing: content-box !important;
+}
+
+.team-icon img {
+    border-radius: 50% !important;
+    background: white !important;
+}
     border-radius: 50%;
     padding: 2px;
 }

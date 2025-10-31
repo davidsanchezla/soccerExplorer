@@ -71,12 +71,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (item.liga === 'La Liga') {
             const nombreArchivo = equiposLaLiga[item.nombre];
             if (nombreArchivo) {
-                return L.icon({
-                    iconUrl: `/static/img/escudos/laliga/${nombreArchivo}.png`,
+                return L.divIcon({
+                    html: `<div class="team-icon" style="width: 36px; height: 36px; border-radius: 50%; background: white; padding: 2px; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                            <img src="/static/img/escudos/laliga/${nombreArchivo}.png" style="width: 100%; height: 100%; border-radius: 50%; object-fit: contain;">
+                          </div>`,
                     iconSize: [40, 40],
                     iconAnchor: [20, 20],
                     popupAnchor: [0, -20],
-                    className: 'team-icon'
+                    className: 'team-marker'
                 });
             }
         }

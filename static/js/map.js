@@ -113,9 +113,23 @@ document.addEventListener('DOMContentLoaded', function() {
         `);
         
         marker.on('click', function(e) {
+            let headerContent = `<h3>${item.nombre}</h3>`;
+            
+            if (item.liga === 'La Liga') {
+                const nombreArchivo = equiposLaLiga[item.nombre];
+                if (nombreArchivo) {
+                    headerContent = `
+                        <div style="display: flex; align-items: center;">
+                            <img src="/static/img/escudos/laliga/${nombreArchivo}.png" 
+                                 style="width: 40px; height: 40px; margin-right: 10px; object-fit: contain;">
+                            <h3 style="margin: 0;">${item.nombre}</h3>
+                        </div>`;
+                }
+            }
+            
             document.getElementById('infoPanel').innerHTML = `
                 <div style="border-left: 4px solid ${ligaColors[item.liga]}; padding-left: 10px;">
-                    <h3>${item.nombre}</h3>
+                    ${headerContent}
                     <p><strong>Liga:</strong> ${item.liga}</p>
                     <p><strong>Estadio:</strong> ${item.estadio}</p>
                     <p><strong>Ciudad:</strong> ${item.ciudad}</p>

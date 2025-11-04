@@ -57,19 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Aplicar color de liga a los botones de liga nacional
-    leagueButtons.forEach(button => {
-        const liga = button.dataset.league;
-        if (liga && !button.classList.contains('international')) {
-            // Usar color de liga
-            const ligaColors = {
-                'La Liga': '#973949',
-                'Premier League': '#3D195B',
-                'Serie A': '#008FD0',
-                'Bundesliga': '#6d1313',
-                'Ligue 1': '#1c1faf'
-            };
-            button.style.background = ligaColors[liga] || '#ccc';
-        }
-    });
+    // Nota: No asignamos fondo fijo a las ligas nacionales para que
+    // el color sólo aparezca en hover vía CSS (como en los internacionales).
+    // Las reglas en inicio.css gestionan background, border y shadow al hover.
 });

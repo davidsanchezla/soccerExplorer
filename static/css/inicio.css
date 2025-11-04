@@ -45,8 +45,8 @@ body {
 
 /* Imagen del pin */
 .pin-image {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     margin: 30px auto;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -142,32 +142,32 @@ body {
 
 /* Efectos hover específicos para cada liga */
 .league-button[data-league="La Liga"]:hover {
-    background-color: rgba(151, 57, 73, 0.1);
-    border-color: var(--laliga-color);
+    background-color: #97394920;
+    border-color: #973949;
     box-shadow: 0 8px 15px rgba(151, 57, 73, 0.2);
 }
 
 .league-button[data-league="Premier League"]:hover {
-    background-color: rgba(61, 25, 91, 0.1);
-    border-color: var(--premier-color);
+    background-color: #3d195b20;
+    border-color: #3D195B;
     box-shadow: 0 8px 15px rgba(61, 25, 91, 0.2);
 }
 
 .league-button[data-league="Serie A"]:hover {
-    background-color: rgba(0, 143, 208, 0.1);
-    border-color: var(--seriea-color);
+    background-color: #008ed020;
+    border-color: #008FD0;
     box-shadow: 0 8px 15px rgba(0, 143, 208, 0.2);
 }
 
 .league-button[data-league="Bundesliga"]:hover {
-    background-color: rgba(109, 19, 19, 0.1);
-    border-color: var(--bundesliga-color);
+    background-color: #6d131320;
+    border-color: #6d1313;
     box-shadow: 0 8px 15px rgba(109, 19, 19, 0.2);
 }
 
 .league-button[data-league="Ligue 1"]:hover {
-    background-color: rgba(28, 31, 175, 0.1);
-    border-color: var(--ligue1-color);
+    background-color: #1c1eaf20;
+    border-color: #1c1faf;
     box-shadow: 0 8px 15px rgba(28, 31, 175, 0.2);
 }
 

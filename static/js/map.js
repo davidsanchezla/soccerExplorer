@@ -50,6 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
         attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
+    // Escuchar cambios de zoom
+    map.on('zoomend', updateMarkers);
+
     // Variables globales para los marcadores
     let allMarkers = [];
     let markersLayer = L.layerGroup().addTo(map);
@@ -67,14 +70,42 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Función para crear un icono
-    function createIcon(item) {
-        if (item.liga === 'La Liga') {
+    function createIcon(item, currentZoom) {
+        const isLaLiga = item.liga === 'La Liga';
+        const showEscudo = currentZoom >= 7;
+        console.log('Zoom actual:', currentZoom, 'Equipo:', item.nombre, 'La Liga:', isLaLiga, 'Mostrar escudo:', showEscudo);
+
+        // Crear punto por defecto (zoom alejado o no es de La Liga)
+        if (currentZoom < 7 || !isLaLiga) {
+            const size = 12; // Mismo tamaño para todos los puntos
+            console.log('Creando PUNTO para:', item.nombre, 'tamaño:', size);
+            
+            const html = `<div style="
+                background-color: ${ligaColors[item.liga]}; 
+                width: ${size}px; 
+                height: ${size}px; 
+                border-radius: 50%; 
+                border: 2px solid white;
+                box-shadow: 0 0 4px rgba(0,0,0,0.5);">
+            </div>`;
+            
+            return L.divIcon({
+                className: 'custom-div-icon',
+                html: html,
+                iconSize: [size + 4, size + 4],
+                iconAnchor: [(size + 4)/2, (size + 4)/2]
+            });
+        }
+
+        // Mostrar escudo solo para La Liga y zoom cercano
+        if (isLaLiga && showEscudo) {
             const nombreArchivo = equiposLaLiga[item.nombre];
             if (nombreArchivo) {
+                console.log('Creando ESCUDO para:', item.nombre);
                 return L.divIcon({
                     html: `<div class="team-icon" style="width: 36px; height: 36px; border-radius: 50%; background: white; padding: 2px; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">
                             <img src="/static/img/escudos/laliga/${nombreArchivo}.png" style="width: 100%; height: 100%; border-radius: 50%; object-fit: contain;">
-                          </div>`,
+                        </div>`,
                     iconSize: [40, 40],
                     iconAnchor: [20, 20],
                     popupAnchor: [0, -20],
@@ -82,26 +113,59 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         }
+
+        // Si algo falla, mostrar punto por defecto
+        return createDefaultIcon(item);
+    }
+    
+    // Función auxiliar para crear icono por defecto
+    function createDefaultIcon(item) {
+        const size = 12; // Mismo tamaño para todos los puntos
+        console.log('Creando icono por defecto para:', item.nombre, 'tamaño:', size);
         
-        // Para otros equipos o si no se encuentra el escudo
         return L.divIcon({
             className: 'custom-div-icon',
-            html: `<div style="background-color: ${ligaColors[item.liga]}; 
-                           width: ${item.liga === 'La Liga' ? '12' : '10'}px; 
-                           height: ${item.liga === 'La Liga' ? '12' : '10'}px; 
-                           border-radius: 50%; 
-                           border: 2px solid white;
-                           box-shadow: 0 0 ${item.liga === 'La Liga' ? '4' : '3'}px rgba(0,0,0,0.5);">
-                  </div>`,
-            iconSize: [item.liga === 'La Liga' ? 16 : 15, item.liga === 'La Liga' ? 16 : 15],
-            iconAnchor: [item.liga === 'La Liga' ? 8 : 7, item.liga === 'La Liga' ? 8 : 7]
+            html: `<div style="
+                background-color: ${ligaColors[item.liga]}; 
+                width: ${size}px; 
+                height: ${size}px; 
+                border-radius: 50%; 
+                border: 2px solid white;
+                box-shadow: 0 0 4px rgba(0,0,0,0.5);">
+            </div>`,
+            iconSize: [size + 4, size + 4],
+            iconAnchor: [(size + 4)/2, (size + 4)/2]
         });
+    }
+
+    // Función para actualizar todos los marcadores según el zoom
+    function updateMarkers() {
+        const currentZoom = map.getZoom();
+        console.log('=== Actualizando marcadores ===');
+        console.log('Zoom actual:', currentZoom);
+        
+        markersLayer.eachLayer(marker => {
+            if (marker && marker.equipoData) {
+                try {
+                    const newIcon = createIcon(marker.equipoData, currentZoom);
+                    marker.setIcon(newIcon);
+                    console.log('Marcador actualizado:', marker.equipoData.nombre, 
+                              'Liga:', marker.equipoData.liga,
+                              'Zoom:', currentZoom);
+                } catch (error) {
+                    console.error('Error actualizando marcador:', marker.equipoData.nombre, error);
+                }
+            }
+        });
+        console.log('=== Actualización completada ===');
     }
 
     // Función para crear un marcador
     function createMarker(item) {
-        const icon = createIcon(item);
-        const marker = L.marker([item.lat, item.lng], {icon: icon});
+        const marker = L.marker([item.lat, item.lng], {
+            icon: createIcon(item, map.getZoom())
+        });
+        marker.equipoData = item; // Guardar datos del equipo para actualizaciones
         
         marker.bindPopup(`
             <div style="border-left: 4px solid ${ligaColors[item.liga]}; padding-left: 10px;">
@@ -160,7 +224,11 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Marcadores a mostrar:', marcadoresAMostrar);
 
             // Crear y añadir los marcadores
+            const currentZoom = map.getZoom();
+            console.log('Zoom inicial al crear marcadores:', currentZoom);
+            
             marcadoresAMostrar.forEach(item => {
+                console.log('Creando marcador para:', item.nombre, 'Liga:', item.liga);
                 const marker = createMarker(item);
                 allMarkers.push(marker);
                 markersLayer.addLayer(marker);

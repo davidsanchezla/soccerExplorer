@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', function() {
         'CZE': { colors: ['#FFFFFF', '#FF0000', '#0000FF'], alignment: 'horizontal' },
         'AZE': { colors: ['#007FFF', '#FF0000', '#008000'], alignment: 'horizontal' },
         'MON': { colors: ['#FF0000', '#FFFFFF'], alignment: 'horizontal' },
-        'NOR': { colors: ['#BA0C2F', '#FFFFFF', '#00205B', '#FFFFFF', '#BA0C2F'], alignment: 'vertical' }, // Norway
-        'NED': { colors: ['#FF4F00', '#FFFFFF', '#003DA5'], alignment: 'horizontal' }  // Netherlands (Ajax)
+        'NOR': { colors: ['#BA0C2F', '#FFFFFF', '#00205B', '#FFFFFF', '#BA0C2F'], alignment: 'vertical' },
+        'NED': { colors: ['#FF4F00', '#FFFFFF', '#003DA5'], alignment: 'horizontal' } 
         // Añadir más países según sea necesario
     };
 
@@ -61,8 +61,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (metadata) {
             const { colors, alignment } = metadata;
             const gradient = alignment === 'horizontal'
-                ? `linear(to right, ${colors.join(', ')})`
-                : `linear(to bottom, ${colors.join(', ')})`;
+                ? `linear-gradient(to right, ${colors.join(', ')})`
+                : `linear-gradient(to bottom, ${colors.join(', ')})`;
             element.style.background = gradient;
         }
     }
@@ -111,8 +111,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para crear un icono
     function createIcon(item, currentZoom) {
-        // Para todos los equipos: usar bandera con franjas
-        if (item.pais && countryMetadata[item.pais]) {
+        // Champions League: usar bandera con franjas del país
+        if (item.liga === 'Champions League' && item.pais && countryMetadata[item.pais]) {
             const { colors, alignment } = countryMetadata[item.pais];
             const size = 16;
             let stripes = '';
@@ -272,9 +272,11 @@ document.addEventListener('DOMContentLoaded', function() {
             allMarkers = [];
 
             // Filtrar y mostrar solo los equipos de la liga seleccionada
+            // Si no hay liga en la URL (acceso desde el pin de inicio),
+            // ocultar equipos de Champions (mostrar solo ligas nacionales)
             const marcadoresAMostrar = ligaFiltro 
                 ? data.marcadores.filter(item => item.liga === ligaFiltro)
-                : data.marcadores;
+                : data.marcadores.filter(item => item.liga !== 'Champions League');
 
             console.log('Marcadores a mostrar:', marcadoresAMostrar);
 
@@ -324,3 +326,8 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         });
 });
+
+// Botón de Champions en páginas que lo usen (index.html o inicio.html)
+window.activateChampionsView = function () {
+    window.location.href = `/mapa?liga=${encodeURIComponent('Champions League')}`;
+};

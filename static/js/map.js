@@ -43,16 +43,16 @@ document.addEventListener('DOMContentLoaded', function() {
         'GER': { colors: ['#000000', '#FF0000', '#FFFF00'], alignment: 'horizontal' },
         'ITA': { colors: ['#008000', '#FFFFFF', '#FF0000'], alignment: 'vertical' },
         'BEL': { colors: ['#000000', '#FFFF00', '#FF0000'], alignment: 'vertical' },
-        'TUR': { colors: ['#FF0000', '#FFFFFF'], alignment: 'horizontal' },
+        'TUR': { colors: ['#FF0000', '#FFFFFF', '#FF0000', '#FF0000'], alignment: 'vertical' },
         'DEN': { colors: ['#FF0000', '#FFFFFF', '#FF0000'], alignment: 'vertical' },
         'NED': { colors: ['#FF0000', '#FFFFFF', '#0000FF'], alignment: 'horizontal' },
         'POR': { colors: ['#008000', '#FF0000', '#FF0000'], alignment: 'vertical' },
-        'GRE': { colors: ['#0000FF', '#FFFFFF'], alignment: 'horizontal' },
+        'GRE': { colors: ['#0000FF', '#FFFFFF', '#0000FF', '#FFFFFF', '#0000FF'], alignment: 'horizontal' },
         'CZE': { colors: ['#FFFFFF', '#FF0000', '#0000FF'], alignment: 'horizontal' },
         'AZE': { colors: ['#007FFF', '#FF0000', '#008000'], alignment: 'horizontal' },
         'MON': { colors: ['#FF0000', '#FFFFFF'], alignment: 'horizontal' },
         'NOR': { colors: ['#BA0C2F', '#FFFFFF', '#00205B', '#FFFFFF', '#BA0C2F'], alignment: 'vertical' },
-        'NED': { colors: ['#FF4F00', '#FFFFFF', '#003DA5'], alignment: 'horizontal' } 
+        'NED': { colors: ['#d40303ff', '#FFFFFF', '#003DA5'], alignment: 'horizontal' } 
         // Añadir más países según sea necesario
     };
 

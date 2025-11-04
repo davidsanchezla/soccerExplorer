@@ -182,6 +182,15 @@ async def obtener_marcadores():
             {"nombre": "Wolfsburg", "ciudad": "Wolfsburgo", "estadio": "Volkswagen Arena", "lat": 52.4321, "lng": 10.8034, "fundacion": 1945, "titulos_liga": 1, "liga": "Bundesliga"},
 
             # Champions League
+            {"nombre": "Ajax", "ciudad": "Ámsterdam", "estadio": "Johan Cruyff Arena", "lat": 52.3143, "lng": 4.9419, "fundacion": 1900, "titulos_liga": 36, "liga": "Champions League", "pais": "NED"},
+            {"nombre": "Arsenal", "ciudad": "Londres", "estadio": "Emirates Stadium", "lat": 51.5549, "lng": -0.1084, "fundacion": 1886, "titulos_liga": 13, "liga": "Champions League", "pais": "ENG"},
+            {"nombre": "Atalanta", "ciudad": "Bérgamo", "estadio": "Gewiss Stadium", "lat": 45.7097, "lng": 9.6873, "fundacion": 1907, "titulos_liga": 0, "liga": "Champions League", "pais": "ITA"},
+            {"nombre": "Athletic Club", "ciudad": "Bilbao", "estadio": "San Mamés", "lat": 43.2641, "lng": -2.9500, "fundacion": 1898, "titulos_liga": 8, "liga": "Champions League", "pais": "ESP"},
+            {"nombre": "Atlético Madrid", "ciudad": "Madrid", "estadio": "Metropolitano", "lat": 40.4362, "lng": -3.5995, "fundacion": 1903, "titulos_liga": 11, "liga": "Champions League", "pais": "ESP"},
+            {"nombre": "Borussia Dortmund", "ciudad": "Dortmund", "estadio": "Signal Iduna Park", "lat": 51.4926, "lng": 7.4517, "fundacion": 1909, "titulos_liga": 8, "liga": "Champions League", "pais": "GER"},
+            {"nombre": "Barcelona", "ciudad": "Barcelona", "estadio": "Spotify Camp Nou", "lat": 41.3809, "lng": 2.1228, "fundacion": 1899, "titulos_liga": 27, "liga": "Champions League", "pais": "ESP"},
+            {"nombre": "Bayern München", "ciudad": "Múnich", "estadio": "Allianz Arena", "lat": 48.2188, "lng": 11.6247, "fundacion": 1900, "titulos_liga": 33, "liga": "Champions League", "pais": "GER"},
+            {"nombre": "Benfica", "ciudad": "Lisboa", "estadio": "Estádio da Luz", "lat": 38.7528, "lng": -9.1846, "fundacion": 1904, "titulos_liga": 37, "liga": "Champions League", "pais": "POR"},
             {"nombre": "Chelsea", "ciudad": "Londres", "estadio": "Stamford Bridge", "lat": 51.4816, "lng": -0.1910, "fundacion": 1905, "titulos_liga": 6, "liga": "Champions League", "pais": "ENG"},
             {"nombre": "Club Brugge", "ciudad": "Brujas", "estadio": "Jan Breydel Stadium", "lat": 51.2093, "lng": 3.2247, "fundacion": 1891, "titulos_liga": 18, "liga": "Champions League", "pais": "BEL"},
             {"nombre": "Copenhagen", "ciudad": "Copenhague", "estadio": "Parken Stadium", "lat": 55.6761, "lng": 12.5683, "fundacion": 1992, "titulos_liga": 14, "liga": "Champions League", "pais": "DEN"},

@@ -51,7 +51,8 @@ document.addEventListener('DOMContentLoaded', function() {
         'CZE': { colors: ['#FFFFFF', '#FF0000', '#0000FF'], alignment: 'horizontal' },
         'AZE': { colors: ['#007FFF', '#FF0000', '#008000'], alignment: 'horizontal' },
         'MON': { colors: ['#FF0000', '#FFFFFF'], alignment: 'horizontal' },
-        'NOR': { colors: ['#BA0C2F', '#FFFFFF', '#00205B', '#FFFFFF', '#BA0C2F'], alignment: 'vertical' } // Norway
+        'NOR': { colors: ['#BA0C2F', '#FFFFFF', '#00205B', '#FFFFFF', '#BA0C2F'], alignment: 'vertical' }, // Norway
+        'NED': { colors: ['#FF4F00', '#FFFFFF', '#003DA5'], alignment: 'horizontal' }  // Netherlands (Ajax)
         // Añadir más países según sea necesario
     };
 
@@ -75,14 +76,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar el mapa centrado en Europa
     var map = L.map('map', {
         maxBounds: [
-            [35.0, -15.0], // Esquina suroeste
-            [65.0, 35.0]   // Esquina noreste
+            [20.0, -30.0], // Esquina suroeste (más al sur y oeste)
+            [75.0, 90.0]   // Esquina noreste (más al norte y este para incluir Noruega y Kazajistán)
         ],
-        minZoom: 4,
+        minZoom: 3,
         maxZoom: 20,
         maxBoundsViscosity: 1.0,
         bounceAtZoomLimits: false
-    }).setView([48, 10], 4); // Centro en Europa Central
+    }).setView([50, 30], 3); // Centro ajustado para ver desde Noruega hasta Kazajistán
 
     // Añadir capa de OpenStreetMap
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -110,8 +111,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para crear un icono
     function createIcon(item, currentZoom) {
-        // Champions League: usar bandera con franjas
-        if (item.liga === 'Champions League' && item.pais && countryMetadata[item.pais]) {
+        // Para todos los equipos: usar bandera con franjas
+        if (item.pais && countryMetadata[item.pais]) {
             const { colors, alignment } = countryMetadata[item.pais];
             const size = 16;
             let stripes = '';

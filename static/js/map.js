@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
         'Premier League': '#3D195B',     // Morado
         'Serie A': '#008FD0',           // Azul
         'Bundesliga': '#6d1313',        // Rojo oscuro
-        'Ligue 1': '#1c1faf'            // Azul marino
+        'Ligue 1': '#1c1faf',            // Azul marino
+        'Champions League': '#05128aff' // Oro
     };
 
     // Mapeo de equipos de La Liga con sus archivos de escudo
@@ -32,6 +33,44 @@ document.addEventListener('DOMContentLoaded', function() {
         'Real Oviedo': 'RealOviedo',
         'Girona': 'Girona'
     };
+
+    const countryMetadata = {
+        'ESP': { colors: ['#FF0000', '#FFFF00', '#FF0000'], alignment: 'horizontal' },
+        'FRA': { colors: ['#0000FF', '#FFFFFF', '#FF0000'], alignment: 'vertical' },
+        'CYP': { colors: ['#FFFFFF', '#FFA500'], alignment: 'horizontal' },
+        'KAZ': { colors: ['#007FFF', '#FFD700'], alignment: 'vertical' },
+        'ENG': { colors: ['#FFFFFF', '#FF0000', '#FFFFFF'], alignment: 'vertical' },
+        'GER': { colors: ['#000000', '#FF0000', '#FFFF00'], alignment: 'horizontal' },
+        'ITA': { colors: ['#008000', '#FFFFFF', '#FF0000'], alignment: 'vertical' },
+        'BEL': { colors: ['#000000', '#FFFF00', '#FF0000'], alignment: 'vertical' },
+        'TUR': { colors: ['#FF0000', '#FFFFFF'], alignment: 'horizontal' },
+        'DEN': { colors: ['#FF0000', '#FFFFFF', '#FF0000'], alignment: 'vertical' },
+        'NED': { colors: ['#FF0000', '#FFFFFF', '#0000FF'], alignment: 'horizontal' },
+        'POR': { colors: ['#008000', '#FF0000', '#FF0000'], alignment: 'vertical' },
+        'GRE': { colors: ['#0000FF', '#FFFFFF'], alignment: 'horizontal' },
+        'CZE': { colors: ['#FFFFFF', '#FF0000', '#0000FF'], alignment: 'horizontal' },
+        'AZE': { colors: ['#007FFF', '#FF0000', '#008000'], alignment: 'horizontal' },
+        'MON': { colors: ['#FF0000', '#FFFFFF'], alignment: 'horizontal' },
+        'NOR': { colors: ['#BA0C2F', '#FFFFFF', '#00205B', '#FFFFFF', '#BA0C2F'], alignment: 'vertical' } // Norway
+        // Añadir más países según sea necesario
+    };
+
+    function applyCountryStyles(countryCode, element) {
+        const metadata = countryMetadata[countryCode];
+        if (metadata) {
+            const { colors, alignment } = metadata;
+            const gradient = alignment === 'horizontal'
+                ? `linear(to right, ${colors.join(', ')})`
+                : `linear(to bottom, ${colors.join(', ')})`;
+            element.style.background = gradient;
+        }
+    }
+
+    // Example usage for buttons:
+    document.querySelectorAll('.country-button').forEach(button => {
+        const countryCode = button.dataset.country; // Assuming buttons have a data-country attribute
+        applyCountryStyles(countryCode, button);
+    });
 
     // Inicializar el mapa centrado en Europa
     var map = L.map('map', {
@@ -71,24 +110,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para crear un icono
     function createIcon(item, currentZoom) {
-        const isLaLiga = item.liga === 'La Liga';
-        const showEscudo = currentZoom >= 7;
-        console.log('Zoom actual:', currentZoom, 'Equipo:', item.nombre, 'La Liga:', isLaLiga, 'Mostrar escudo:', showEscudo);
-
-        // Crear punto por defecto (zoom alejado o no es de La Liga)
-        if (currentZoom < 7 || !isLaLiga) {
-            const size = 12; // Mismo tamaño para todos los puntos
-            console.log('Creando PUNTO para:', item.nombre, 'tamaño:', size);
-            
-            const html = `<div style="
-                background-color: ${ligaColors[item.liga]}; 
-                width: ${size}px; 
-                height: ${size}px; 
-                border-radius: 50%; 
-                border: 2px solid white;
-                box-shadow: 0 0 4px rgba(0,0,0,0.5);">
-            </div>`;
-            
+        // Champions League: usar bandera con franjas
+        if (item.liga === 'Champions League' && item.pais && countryMetadata[item.pais]) {
+            const { colors, alignment } = countryMetadata[item.pais];
+            const size = 16;
+            let stripes = '';
+            if (alignment === 'horizontal') {
+                const stripeHeight = size / colors.length;
+                stripes = colors.map((color, i) => `<div style="height:${stripeHeight}px;width:100%;background:${color};margin:0;padding:0;flex:1;"></div>`).join('');
+                return L.divIcon({
+                    className: 'custom-div-icon',
+                    html: `<div style="width:${size}px;height:${size}px;border-radius:50%;overflow:hidden;border:2px solid white;box-shadow:0 0 4px rgba(0,0,0,0.5);display:flex;flex-direction:column;">${stripes}</div>`,
+                    iconSize: [size + 4, size + 4],
+                    iconAnchor: [(size + 4)/2, (size + 4)/2]
+                });
+            } else {
+                const stripeWidth = size / colors.length;
+                stripes = colors.map((color, i) => `<div style="height:100%;width:${stripeWidth}px;background:${color};margin:0;padding:0;flex:1;"></div>`).join('');
+                return L.divIcon({
+                    className: 'custom-div-icon',
+                    html: `<div style="width:${size}px;height:${size}px;border-radius:50%;overflow:hidden;border:2px solid white;box-shadow:0 0 4px rgba(0,0,0,0.5);display:flex;flex-direction:row;">${stripes}</div>`,
+                    iconSize: [size + 4, size + 4],
+                    iconAnchor: [(size + 4)/2, (size + 4)/2]
+                });
+            }
+        }
+        // La Liga: mostrar escudo si zoom >= 7
+        if (item.liga === 'La Liga') {
+            if (currentZoom >= 7) {
+                const nombreArchivo = equiposLaLiga[item.nombre];
+                if (nombreArchivo) {
+                    return L.divIcon({
+                        html: `<div class="team-icon" style="width: 36px; height: 36px; border-radius: 50%; background: white; padding: 2px; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                                <img src="/static/img/escudos/laliga/${nombreArchivo}.png" style="width: 100%; height: 100%; border-radius: 50%; object-fit: contain;">
+                            </div>`,
+                        iconSize: [40, 40],
+                        iconAnchor: [20, 20],
+                        popupAnchor: [0, -20],
+                        className: 'team-marker'
+                    });
+                }
+            }
+            // Si zoom < 7 o no hay escudo, mostrar punto de color
+            const size = 12;
+            const html = `<div style="background-color: ${ligaColors[item.liga]}; width: ${size}px; height: ${size}px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 4px rgba(0,0,0,0.5);"></div>`;
             return L.divIcon({
                 className: 'custom-div-icon',
                 html: html,
@@ -96,26 +161,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 iconAnchor: [(size + 4)/2, (size + 4)/2]
             });
         }
-
-        // Mostrar escudo solo para La Liga y zoom cercano
-        if (isLaLiga && showEscudo) {
-            const nombreArchivo = equiposLaLiga[item.nombre];
-            if (nombreArchivo) {
-                console.log('Creando ESCUDO para:', item.nombre);
-                return L.divIcon({
-                    html: `<div class="team-icon" style="width: 36px; height: 36px; border-radius: 50%; background: white; padding: 2px; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">
-                            <img src="/static/img/escudos/laliga/${nombreArchivo}.png" style="width: 100%; height: 100%; border-radius: 50%; object-fit: contain;">
-                        </div>`,
-                    iconSize: [40, 40],
-                    iconAnchor: [20, 20],
-                    popupAnchor: [0, -20],
-                    className: 'team-marker'
-                });
-            }
-        }
-
-        // Si algo falla, mostrar punto por defecto
-        return createDefaultIcon(item);
+        // Nacional: usar color de liga
+        const size = 12;
+        const html = `<div style="background-color: ${ligaColors[item.liga]}; width: ${size}px; height: ${size}px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 4px rgba(0,0,0,0.5);"></div>`;
+        return L.divIcon({
+            className: 'custom-div-icon',
+            html: html,
+            iconSize: [size + 4, size + 4],
+            iconAnchor: [(size + 4)/2, (size + 4)/2]
+        });
     }
     
     // Función auxiliar para crear icono por defecto

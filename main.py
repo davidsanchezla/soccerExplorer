@@ -179,7 +179,36 @@ async def obtener_marcadores():
             {"nombre": "Stuttgart", "ciudad": "Stuttgart", "estadio": "Mercedes-Benz Arena", "lat": 48.7925, "lng": 9.2320, "fundacion": 1893, "titulos_liga": 5, "liga": "Bundesliga"},
             {"nombre": "Union Berlin", "ciudad": "Berlín", "estadio": "Stadion An der Alten Försterei", "lat": 52.4583, "lng": 13.5683, "fundacion": 1966, "titulos_liga": 0, "liga": "Bundesliga"},
             {"nombre": "Werder Bremen", "ciudad": "Bremen", "estadio": "Weserstadion", "lat": 53.0667, "lng": 8.8407, "fundacion": 1899, "titulos_liga": 4, "liga": "Bundesliga"},
-            {"nombre": "Wolfsburg", "ciudad": "Wolfsburgo", "estadio": "Volkswagen Arena", "lat": 52.4321, "lng": 10.8034, "fundacion": 1945, "titulos_liga": 1, "liga": "Bundesliga"}
+            {"nombre": "Wolfsburg", "ciudad": "Wolfsburgo", "estadio": "Volkswagen Arena", "lat": 52.4321, "lng": 10.8034, "fundacion": 1945, "titulos_liga": 1, "liga": "Bundesliga"},
+
+            # Champions League
+            {"nombre": "Chelsea", "ciudad": "Londres", "estadio": "Stamford Bridge", "lat": 51.4816, "lng": -0.1910, "fundacion": 1905, "titulos_liga": 6, "liga": "Champions League", "pais": "ENG"},
+            {"nombre": "Club Brugge", "ciudad": "Brujas", "estadio": "Jan Breydel Stadium", "lat": 51.2093, "lng": 3.2247, "fundacion": 1891, "titulos_liga": 18, "liga": "Champions League", "pais": "BEL"},
+            {"nombre": "Copenhagen", "ciudad": "Copenhague", "estadio": "Parken Stadium", "lat": 55.6761, "lng": 12.5683, "fundacion": 1992, "titulos_liga": 14, "liga": "Champions League", "pais": "DEN"},
+            {"nombre": "Frankfurt", "ciudad": "Fráncfort", "estadio": "Deutsche Bank Park", "lat": 50.1109, "lng": 8.6821, "fundacion": 1899, "titulos_liga": 1, "liga": "Champions League", "pais": "GER"},
+            {"nombre": "Galatasaray", "ciudad": "Estambul", "estadio": "Nef Stadium", "lat": 41.0082, "lng": 28.9784, "fundacion": 1905, "titulos_liga": 23, "liga": "Champions League", "pais": "TUR"},
+            {"nombre": "Inter", "ciudad": "Milán", "estadio": "San Siro", "lat": 45.4642, "lng": 9.1900, "fundacion": 1908, "titulos_liga": 19, "liga": "Champions League", "pais": "ITA"},
+            {"nombre": "Juventus", "ciudad": "Turín", "estadio": "Allianz Stadium", "lat": 45.0703, "lng": 7.6869, "fundacion": 1897, "titulos_liga": 36, "liga": "Champions League", "pais": "ITA"},
+            {"nombre": "Kairat Almaty", "ciudad": "Almaty", "estadio": "Central Stadium", "lat": 43.2220, "lng": 76.8512, "fundacion": 1954, "titulos_liga": 0, "liga": "Champions League", "pais": "KAZ"},
+            {"nombre": "Leverkusen", "ciudad": "Leverkusen", "estadio": "BayArena", "lat": 51.0335, "lng": 6.9850, "fundacion": 1904, "titulos_liga": 0, "liga": "Champions League", "pais": "GER"},
+            {"nombre": "Liverpool", "ciudad": "Liverpool", "estadio": "Anfield", "lat": 53.4084, "lng": -2.9916, "fundacion": 1892, "titulos_liga": 19, "liga": "Champions League", "pais": "ENG"},
+            {"nombre": "Man City", "ciudad": "Manchester", "estadio": "Etihad Stadium", "lat": 53.4831, "lng": -2.2004, "fundacion": 1880, "titulos_liga": 9, "liga": "Champions League", "pais": "ENG"},
+            {"nombre": "Marseille", "ciudad": "Marsella", "estadio": "Stade Vélodrome", "lat": 43.2965, "lng": 5.3698, "fundacion": 1899, "titulos_liga": 9, "liga": "Champions League", "pais": "FRA"},
+            {"nombre": "Monaco", "ciudad": "Mónaco", "estadio": "Stade Louis II", "lat": 43.7384, "lng": 7.4246, "fundacion": 1924, "titulos_liga": 8, "liga": "Champions League", "pais": "MON"},
+            {"nombre": "Napoli", "ciudad": "Nápoles", "estadio": "Diego Armando Maradona Stadium", "lat": 40.8518, "lng": 14.2681, "fundacion": 1926, "titulos_liga": 3, "liga": "Champions League", "pais": "ITA"},
+            {"nombre": "Newcastle", "ciudad": "Newcastle", "estadio": "St James' Park", "lat": 54.9783, "lng": -1.6174, "fundacion": 1892, "titulos_liga": 4, "liga": "Champions League", "pais": "ENG"},
+            {"nombre": "Olympiacos", "ciudad": "El Pireo", "estadio": "Karaiskakis Stadium", "lat": 37.9838, "lng": 23.7275, "fundacion": 1925, "titulos_liga": 47, "liga": "Champions League", "pais": "GRE"},
+            {"nombre": "Pafos", "ciudad": "Pafos", "estadio": "Stadium Pafiako", "lat": 34.7720, "lng": 32.4297, "fundacion": 2014, "titulos_liga": 0, "liga": "Champions League", "pais": "CYP"},
+            {"nombre": "Paris", "ciudad": "París", "estadio": "Parc des Princes", "lat": 48.8566, "lng": 2.3522, "fundacion": 1970, "titulos_liga": 11, "liga": "Champions League", "pais": "FRA"},
+            {"nombre": "PSV", "ciudad": "Eindhoven", "estadio": "Philips Stadion", "lat": 51.4416, "lng": 5.4697, "fundacion": 1913, "titulos_liga": 24, "liga": "Champions League", "pais": "NED"},
+            {"nombre": "Qarabağ", "ciudad": "Bakú", "estadio": "Tofiq Bahramov Stadium", "lat": 40.4093, "lng": 49.8671, "fundacion": 1951, "titulos_liga": 9, "liga": "Champions League", "pais": "AZE"},
+            {"nombre": "Real Madrid", "ciudad": "Madrid", "estadio": "Santiago Bernabéu", "lat": 40.4168, "lng": -3.7038, "fundacion": 1902, "titulos_liga": 35, "liga": "Champions League", "pais": "ESP"},
+            {"nombre": "Slavia Praha", "ciudad": "Praga", "estadio": "Sinobo Stadium", "lat": 50.0755, "lng": 14.4378, "fundacion": 1892, "titulos_liga": 21, "liga": "Champions League", "pais": "CZE"},
+            {"nombre": "Sporting CP", "ciudad": "Lisboa", "estadio": "Estádio José Alvalade", "lat": 38.7169, "lng": -9.1390, "fundacion": 1906, "titulos_liga": 19, "liga": "Champions League", "pais": "POR"},
+            {"nombre": "Tottenham", "ciudad": "Londres", "estadio": "Tottenham Hotspur Stadium", "lat": 51.6033, "lng": -0.0657, "fundacion": 1882, "titulos_liga": 2, "liga": "Champions League", "pais": "ENG"},
+            {"nombre": "Union SG", "ciudad": "Bruselas", "estadio": "Stade Joseph Marien", "lat": 50.8503, "lng": 4.3517, "fundacion": 1897, "titulos_liga": 11, "liga": "Champions League", "pais": "BEL"},
+            {"nombre": "Villarreal", "ciudad": "Villarreal", "estadio": "Estadio de la Cerámica", "lat": 39.9442, "lng": -0.1033, "fundacion": 1923, "titulos_liga": 0, "liga": "Champions League", "pais": "ESP"},
+            {"nombre": "Bodø/Glimt", "ciudad": "Bodø", "estadio": "Aspmyra Stadion", "lat": 67.2841, "lng": 14.3822, "fundacion": 1916, "titulos_liga": 2, "liga": "Champions League", "pais": "NOR"}
         ]
     }
 

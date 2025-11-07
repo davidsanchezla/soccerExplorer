@@ -326,8 +326,3 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         });
 });
-
-// Botón de Champions en páginas que lo usen (index.html o inicio.html)
-window.activateChampionsView = function () {
-    window.location.href = `/mapa?liga=${encodeURIComponent('Champions League')}`;
-};
